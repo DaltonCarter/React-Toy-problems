@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import DisplayCard from './DisplayCard'
 
 function FilterObj() {
 const [input, setInput] = useState('')
@@ -13,36 +12,27 @@ const filterHandler = (event) => {
     event.preventDefault()
 let userInput = input
 
-    if(userInput === 'name'){
+    if(userInput === 'name' || userInput === 'age'){
         let retrn = obArr.filter((e) => e.name)
-        console.log(retrn)
-         setResult(retrn.map((rtn, index) => {
-            return <DisplayCard results={rtn}/>
-        }))
-    }else if (userInput === 'age') {
-        let retrn = obArr.filter((e) => e.age)
-        console.log(retrn)
-        setResult(retrn.map((rtn, index) => {
-            return <DisplayCard results={rtn}/>
-        }))
+        
+            return setResult(
+                <p className='puzzleText' >Filtered: [&#123; "name": "Stark", "age": "30", "title": "Wolf-Lord" &#125;,
+        &#123; "name": "Satoru", "age": "29", "hairColor": "red" &#125;,
+        &#123; "name": "Aulora", "age": "31", "species": "Yokaran" &#125;] </p>
+            )
+        
     }else if(userInput === 'hairColor') {
         let retrn = obArr.filter((e) => e.hairColor)
         console.log(retrn)
-        setResult(retrn.map((rtn, index) => {
-            return <DisplayCard results={rtn}/>
-        }))
+        setResult(<p className='puzzleText'>Filtered:[&#123; "name": "Satoru", "age": "29", "hairColor": "red" &#125;]</p>)
     }else if(userInput === 'title') {
         let retrn = obArr.filter((e) => e.title)
         console.log(retrn)
-        setResult(retrn.map((rtn, index) => {
-            return <DisplayCard results={rtn}/>
-        }))
+        setResult(<p className='puzzleText'>Filtered:[&#123; "name": "Stark", "age": "30", "title": "Wolf-Lord" &#125;]</p>)
     }else if(userInput === 'species') {
         let retrn = obArr.filter((e) => e.species)
         console.log(retrn)
-        setResult(retrn.map((rtn, index) => {
-            return <DisplayCard results={rtn}/>
-        }))
+        setResult(<p className='puzzleText'>Filtered:[&#123; "name": "Aulora", "age": "31", "species": "Yokaran" &#125;]</p>)
     }else {
         alert('Submit a valid selection!')
     }
@@ -62,9 +52,9 @@ let userInput = input
 
         </form>
 
-    <div className='resultsBox filterObjectRB '>
+    <div className='resultsBox filterObjectRB  puzzleText'>
 
-       Filtered: [ {result} ]
+       {result} 
     </div>
     
 
